@@ -1,35 +1,38 @@
-/**************************************************************/
-/*                                                            */
-/*   Program to demonstrate the implmentation of a simple     */
-/*   linked list of letters with a delete option.					  */
-/*                                                            */
-/**************************************************************/
+#include "h1.h" 
 
-#include "h1.h"
-	
-/**********ADD THREE NODES TO THE LIST******************/
-// Each new node is added to the front of the front 
-
-void addNodes() {	
+//2nd Commit - Partially implemented addCar method - CURRENTLY NOT WORKING
+void addCar() {	
 	int i;
-	char value;
 	struct LinearNode *aNode;
 	struct Data *anElement;
 
-	// add SIZE nodes to the front
 	for (i=0; i<SIZE; i++) {
-		printf("Enter a letter for node : ");
-		value= getchar();
-        getchar(); //clear the scanner
-         //create space for new data element
-         anElement = (struct Data *)malloc(sizeof(struct Data));
-         
-		// create space for new node
-		aNode = (struct LinearNode *)malloc(sizeof(struct LinearNode));
+         anElement = (struct Data *)malloc(sizeof(struct Data)); //create space for new data element
 
-         //add aNumber to data node
-         anElement->letter= value; 
-     
+		 //Enter Car information
+		 printf("Enter Car Registration: ");
+		 scanf("%s", anElement -> carInfo.carReg);
+		 getchar();
+		 getchar();
+
+		 printf("Enter Car Make: ");
+		 scanf("%s", anElement -> carInfo.carMake);
+		 getchar();
+
+		 printf("Enter Car Model: ");
+		 scanf("%s", anElement -> carInfo.carModel);
+		 getchar();
+
+		 printf("Enter Car Colour: ");
+		 scanf("%s", anElement -> carInfo.colour);
+		 getchar();
+
+		 printf("Enter Number of Previous Owners: ");
+		 scanf("%d", anElement -> carInfo.previousOwners);
+		 getchar();
+		 
+		 aNode = (struct LinearNode *)malloc(sizeof(struct LinearNode)); // create space for new node
+
 		if (aNode == NULL)
 			printf("Error - no space for the new node\n");
 		else { // add data part to the node
@@ -49,24 +52,9 @@ void addNodes() {
 		}//end else
 	}//end for
 } //end addNodes
- 			
 
-void viewAllNodes() {
-	struct LinearNode *current;
-
-	if (isEmpty())
-		printf("\nError - there are no nodes in the list\n");
-	else {
-			current = front;
-			while (current != NULL) {
-				printf("\nNode value is %c\n", current->element->letter);
-				current=current->next;
-			} //end while
-    }//end else
-} //end viewAllNodes
-
-
-void deleteNode(char value) {
+void sellCar() {
+	char value;
 	struct LinearNode *current, *previous;
 	bool found = false;
 
@@ -76,7 +64,7 @@ void deleteNode(char value) {
 			current = previous = front;
 
 			while (!found && current != NULL) {
-				if (value == current->element->letter)
+				if (value == current->element)
 					found = true;
 				else {
 						previous = current;
@@ -105,6 +93,9 @@ void deleteNode(char value) {
 		}//end else
 }// end deleteNode
 
+void carReserve(){
+
+}
 
 bool isEmpty() {
 	if (front == NULL)
@@ -113,6 +104,59 @@ bool isEmpty() {
 		return false;
 }
 
+void viewAllCars() {
+	struct LinearNode *current;
+
+	if (isEmpty())
+		printf("\nError - there are no nodes in the list\n");
+	else {
+			current = front;
+			while (current != NULL) {
+				printf("\nNode value is %c\n", current->element);
+				current=current->next;
+			} //end while
+    }//end else
+} //end viewAllNodes
+
+//2nd commit - added menu
 void main(){
-	
+	int input;
+
+	printf("Car Showroom Management Software\n");
+	printf("1. Add a car to the showroom\n");
+	printf("2. Sell a car from the showroom\n");
+	printf("3. Reserve/Unreserve a car from the showroom\n");
+	printf("4. View all cars in the showroom\n");
+	printf("5. View single car in the showroom\n");
+	printf("6. UNIMPLEMENTED CUSTOM OPTION\n");
+	printf("7. Exit Software\n\n");
+
+	do{
+		printf("Please select an option:\n");
+		scanf("%d", &input);
+		switch(input){
+		case 1:
+			addCar();
+			break;
+		case 2:
+			sellCar();
+			break;
+		case 3:
+			carReserve();
+			break;
+		case 4:
+			viewAllCars();
+			break;
+		case 5: 
+			viewAllCars();
+			break;
+		case 6:
+			break;
+		case 7:
+			printf("Exiting car showroom program... ");
+			break;
+		default:
+		printf("This is an invalid option! Please try again.\n");
+	}
+	}while(input != 7);
 }

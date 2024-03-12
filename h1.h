@@ -10,13 +10,8 @@
 #include <stdlib.h>
 
 //Preprocessor Variable
-#define SIZE 3
-#endif 
-
-//Stucture template for data part of the linked list
- struct Data {
- 	char letter;
- };
+#define SIZE 5
+#endif
 
 //Stucture template for one node
 struct LinearNode {
@@ -26,6 +21,7 @@ struct LinearNode {
 
 //Structure template for a car
 struct Car{
+    char carReg[10];
     char carMake[20];
     char carModel[20]; 
     char colour[20];
@@ -34,9 +30,19 @@ struct Car{
     int reserveAmount;
 };
 
+//Stucture template for data part of the linked list
+ struct Data {
+    struct Car carInfo;
+ };
+
 // Function prototypes
+void addCar();
+void sellCar();
+void carReserve();
+bool isEmpty();
+void viewAllCars();
+void viewCar();
 
 // Global Variables
 struct LinearNode *front = NULL; //front of the list
-
 struct LinearNode *last = NULL; //pointer to last node in the list - not used in this code
