@@ -8,9 +8,10 @@
 //Libraries
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 //Preprocessor Variable
-#define SIZE 5
+#define SIZE 1
 #endif
 
 //Stucture template for one node
@@ -42,6 +43,7 @@ void carReserve();
 bool isEmpty();
 void viewAllCars();
 void viewCar();
+void getFromFile(FILE *);
 
 // Global Variables
 struct LinearNode *front = NULL; //front of the list
